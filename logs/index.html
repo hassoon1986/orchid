@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Gathering Logs - Orchid</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gathering Logs";
+    var mkdocs_page_input_path = "logs.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Orchid</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configs/">Configs</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Gathering Logs</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#gathering-logs">Gathering Logs</a></li>
+    
+
+    <li class="toctree-l2"><a href="#android-prerequisites">Android Prerequisites</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#android-and-ios-prerequisites">Android and iOS Prerequisites</a></li>
+        
+            <li><a class="toctree-l3" href="#cydia-impactor">Cydia Impactor</a></li>
+        
+            <li><a class="toctree-l3" href="#adb-logcat-android">adb logcat (Android)</a></li>
+        
+            <li><a class="toctree-l3" href="#sanitizing-the-logs">Sanitizing the Logs</a></li>
+        
+            <li><a class="toctree-l3" href="#sharing-the-logs">Sharing the Logs</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../using-orchid/">How to Use Orchid</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Orchid</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Gathering Logs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="gathering-logs">Gathering Logs</h1>
+<p>When debugging client-side issues, you might be requested to share logs. These logs provide advanced details about what the Orchid client is doing behind the scenes to provide you with a private browsing experience. This page is designed to help you collect and share the logs.</p>
+<h1 id="android-prerequisites">Android Prerequisites</h1>
+<p>Start by turning on developer and debugging mode on the phone by going to <code>Settings -&gt; About Phone -&gt; About Software</code> and tapping on the build number repeatedly until it prompts you to enable developer mode. Then go to <code>Settings -&gt; Developer Settings -&gt; Turn on USB Debugging</code>. Finally, you can run the following command on your computer with your phone connected via USB to view the logs.</p>
+<h2 id="android-and-ios-prerequisites">Android and iOS Prerequisites</h2>
+<p>When you connect your device to your computer, it will prompt you to trust the computer. It is important that you do so. Otherwise, you will be unable to collect logs.</p>
+<h2 id="cydia-impactor">Cydia Impactor</h2>
+<p>The easiest way to gather logs from both iOS and Android devices is through <a href="http://www.cydiaimpactor.com">Cydia Impactor</a>. In the main window, use the select box to pick the correct device (if you only have one mobile device connected to your computer, this will be done for you). Next, go to <code>Device -&gt; Watch Log...</code>. A terminal window will appear and it will start to show a streaming syslog from your mobile device.</p>
+<h2 id="adb-logcat-android">adb logcat (Android)</h2>
+<p>If you are using an Android device, you can alternatively collect logs through the Android Debug Bridge (ADB). You can follow this <a href="https://www.xda-developers.com/install-adb-windows-macos-linux/">guide</a> to install adb on Windows, macOS, or Linux. Once installed, you can run the following command in a terminal to view the logs:</p>
+<pre><code>adb logcat
+</code></pre>
+
+<h2 id="sanitizing-the-logs">Sanitizing the Logs</h2>
+<p>The logs you gather will contain information from all applications and actions taken on your device during the period that logs are being gathered. These are not all necessary for debugging purposes. You can optionally filter out all lines that do not contain the string <code>orchid</code> as a quick way to sanitize the output. You can do this with a command like:</p>
+<pre><code>grep -i 'orchid' client.log
+</code></pre>
+
+<p>Where  <code>client.log</code> is the file containing the syslog output from the device. You should also be careful to filter out your various secret keys from the logs:</p>
+<pre><code>grep -vi 'secret' client.log
+</code></pre>
+
+<h2 id="sharing-the-logs">Sharing the Logs</h2>
+<p>The logs you gather will be quite long. You almost certainly do not want to paste them in their entirety into something like a Telegram message. Instead, we encourage you to either share them as an attachment via your preferred method of communication. Or if you are using a communication platform that doesn't support attachments, you can utilize a private pastebin service such as <a href="https://gist.github.com">GitHub Gists</a>, which will provide you with a secret URL you can share to grant access to your logs.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../using-orchid/" class="btn btn-neutral float-right" title="How to Use Orchid">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../configs/" class="btn btn-neutral" title="Configs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../configs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../using-orchid/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
